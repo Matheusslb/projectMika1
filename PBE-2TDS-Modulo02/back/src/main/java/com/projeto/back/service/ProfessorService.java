@@ -3,7 +3,6 @@ package com.projeto.back.service;
 import com.projeto.back.DTO.ProfessorDTO;
 import com.projeto.back.entity.Professor;
 import com.projeto.back.repository.ProfessorRepository;
-import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +12,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProfessorService {
+
     @Autowired
     private ProfessorRepository professorRepository;
 
     public ProfessorDTO criarProfessor(Professor professor) {
         Professor professorSalvo = professorRepository.save(professor);
-        return new ProfessorDTO(professorSalvo.getId(), professorSalvo.getNome(), professorSalvo.getEmail());
+        return new ProfessorDTO(professorSalvo.getId(), professorSalvo.getNome(), professorSalvo.getEmail(), professorSalvo.getSenha());
     }
 
     public ProfessorDTO atualizarProfessor(Long id, Professor professorDetails) {
@@ -33,7 +33,7 @@ public class ProfessorService {
         professor.setSenha(professorDetails.getSenha());
 
         Professor professorAtualizado = professorRepository.save(professor);
-        return new ProfessorDTO(professorAtualizado.getId(), professorAtualizado.getNome(), professorAtualizado.getEmail());
+        return new ProfessorDTO(professorAtualizado.getId(), professorAtualizado.getNome(), professorAtualizado.getEmail(), professorAtualizado.getSenha());
     }
 
     public void deletarProfessor(Long id) {
@@ -48,7 +48,7 @@ public class ProfessorService {
     public List<ProfessorDTO> obterTodosProfessores() {
         return professorRepository.findAll()
                 .stream()
-                .map(professor -> new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail()))
+                .map(professor -> new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail(), professor.getSenha()))
                 .collect(Collectors.toList());
     }
 
@@ -59,7 +59,7 @@ public class ProfessorService {
         }
 
         Professor professor = professorOptional.get();
-        return new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail());
+        return new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail(), professor.getSenha());
     }
 
     public ProfessorDTO obterProfessorPorEmail(String email) {
@@ -69,7 +69,7 @@ public class ProfessorService {
         }
 
         Professor professor = professorOptional.get();
-        return new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail());
+        return new ProfessorDTO(professor.getId(), professor.getNome(), professor.getEmail(), professor.getSenha());
     }
 
     public Professor buscarPorEmail(String email) {

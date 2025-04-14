@@ -15,7 +15,7 @@ document.getElementById('loginButton').addEventListener('click', function(event)
         senha: senha  
     };
 
-    fetch('http://localhost:8080/professor', { 
+    fetch('http://localhost:8080/professor/login', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

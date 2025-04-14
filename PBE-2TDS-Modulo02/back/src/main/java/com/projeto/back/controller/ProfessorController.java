@@ -4,9 +4,12 @@ import com.projeto.back.DTO.ProfessorDTO;
 import com.projeto.back.entity.Professor;
 import com.projeto.back.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/professor")
@@ -43,6 +46,27 @@ public class ProfessorController {
     public ProfessorDTO obterProfessorPorEmail(@PathVariable String email) {
         return professorService.obterProfessorPorEmail(email);
     }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody ProfessorDTO loginDTO) {
+        ProfessorDTO professor = professorService.obterProfessorPorEmail(loginDTO.getEmail());
+
+        if (professor == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "success", false,
+                    "message", "Email não encontrado"
+            ));
+        }
+
+        if (!professor.getSenha().equals(loginDTO.getSenha())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                    "success", false,
+                    "message", "Senha incorreta"
+            ));
+        }
+
+        return ResponseEntity.ok(Map.of("success", true));
+    }
+
 
 
 
