@@ -16,7 +16,7 @@ public class Turma {
 
     @ManyToOne
     @JoinColumn(name = "professor_id")  // Esta coluna é a chave estrangeira
-    
+
     private Professor professor;
 
 

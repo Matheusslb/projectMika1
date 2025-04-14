@@ -5,12 +5,14 @@ public class ProfessorDTO {
     private String nome;
     private String email;
 
+    private String senha;
     public ProfessorDTO() {}
 
-    public ProfessorDTO(Long id, String nome, String email) {
+    public ProfessorDTO(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
     }
 
     // Getters e setters
@@ -22,4 +24,11 @@ public class ProfessorDTO {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

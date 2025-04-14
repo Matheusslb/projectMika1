@@ -33,7 +33,8 @@ public class AtividadeService {
         return new AtividadeDTO(atividadeSalva.getId(), atividadeSalva.getNumero(), atividadeSalva.getDescricao(),
                 new ProfessorDTO(atividadeSalva.getProfessor().getId(),
                         atividadeSalva.getProfessor().getNome(),
-                        atividadeSalva.getProfessor().getEmail()));
+                        atividadeSalva.getProfessor().getEmail(),
+                        atividadeSalva.getProfessor().getSenha()));
     }
 
     public AtividadeDTO atualizarAtividade(Long id, Atividade atividadeDetails) {
@@ -56,7 +57,8 @@ public class AtividadeService {
         return new AtividadeDTO(atividadeAtualizada.getId(), atividadeAtualizada.getNumero(), atividadeAtualizada.getDescricao(),
                 new ProfessorDTO(atividadeAtualizada.getProfessor().getId(),
                         atividadeAtualizada.getProfessor().getNome(),
-                        atividadeAtualizada.getProfessor().getEmail()));
+                        atividadeAtualizada.getProfessor().getEmail(),
+                        atividadeAtualizada.getProfessor().getSenha()));
     }
 
     public void deletarAtividade(Long id) {
@@ -74,7 +76,8 @@ public class AtividadeService {
                 .map(atividade -> new AtividadeDTO(atividade.getId(), atividade.getNumero(), atividade.getDescricao(),
                         new ProfessorDTO(atividade.getProfessor().getId(),
                                 atividade.getProfessor().getNome(),
-                                atividade.getProfessor().getEmail())))
+                                atividade.getProfessor().getEmail(),
+                                atividade.getProfessor().getSenha())))
                 .collect(Collectors.toList());
     }
 
@@ -88,6 +91,7 @@ public class AtividadeService {
         return new AtividadeDTO(atividade.getId(), atividade.getNumero(), atividade.getDescricao(),
                 new ProfessorDTO(atividade.getProfessor().getId(),
                         atividade.getProfessor().getNome(),
-                        atividade.getProfessor().getEmail()));
+                        atividade.getProfessor().getEmail(),
+                        atividade.getProfessor().getSenha()));
     }
 }
