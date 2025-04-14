@@ -15,7 +15,7 @@ document.getElementById('loginButton').addEventListener('click', function(event)
         senha: senha  
     };
 
-    fetch('http://seu-servidor.com/api/login', { 
+    fetch('http://localhost:8080/professor', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,10 +24,11 @@ document.getElementById('loginButton').addEventListener('click', function(event)
     })
     .then(response => response.json()) 
     .then(data => {
+        console.log(data); 
         if (data.success) {
             window.location.href = '/html/principal.html';
         } else {
-            alert('Erro: ' + data.message);
+            alert('Erro: ' + (data.message || 'Login falhou.'));
         }
     })
     .catch(error => {
