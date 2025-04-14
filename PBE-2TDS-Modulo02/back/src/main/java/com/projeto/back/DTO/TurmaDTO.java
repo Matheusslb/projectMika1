@@ -12,10 +12,11 @@ public class TurmaDTO {
     private String nome;
     private ProfessorDTO professor;
 
-    public TurmaDTO(Long id, String numero, String nome, ProfessorDTO professorDTO) {
+    public TurmaDTO(Long id, String numero, String nome, ProfessorDTO professor) {
         this.id = id;
         this.numero = numero;
         this.nome = nome;
+        this.professor = professor;
     }
 
 
