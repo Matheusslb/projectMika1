@@ -26,7 +26,16 @@ document.getElementById('loginButton').addEventListener('click', function(event)
     .then(data => {
         console.log(data); 
         if (data.success) {
-            window.location.href = '/html/principal.html';
+            // Buscar o professor pelo email e salvar o ID no localStorage
+            fetch(`http://localhost:8080/professor/email/${email}`)
+                .then(res => res.json())
+                .then(professor => {
+                    localStorage.setItem('professorId', professor.id); // salvando o ID
+                    window.location.href = '/html/principal.html';
+                })
+                .catch(err => {
+                    alert('Erro ao obter dados do professor: ' + err.message);
+                });
         } else {
             alert('Erro: ' + (data.message || 'Login falhou.'));
         }

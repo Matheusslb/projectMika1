@@ -1,39 +1,42 @@
-document.getElementById("cadastrarTurma").addEventListener("click", function () {
-    const nome = document.getElementById("nomeTurma").value;
+document.getElementById('cadastrarTurma').addEventListener('click', function(event) {
+    event.preventDefault(); 
 
-    // ID do professor (aqui está fixo com ID 1, ajuste isso depois conforme login real)
-    const professorId = 1;
+    const numeroTurma = document.getElementById('numTurma').value;
+    const nomeTurma = document.getElementById('nomeTurma').value;
+    const professorId = localStorage.getItem('professorId'); // Supondo que o professorId seja armazenado após o login
 
-    if (!nome.trim()) {
-        alert("Digite o nome da turma!");
+    if (!numeroTurma || !nomeTurma) {
+        alert('Por favor, preencha todos os campos!');
         return;
     }
 
-    const turma = {
-        nome: nome,
-        professor: {
-            id: professorId
-        }
+    const turmaData = {
+        numero: numeroTurma,
+        nome: nomeTurma,
+        professor: { id: professorId } // Associando o professor
     };
 
-    fetch("http://localhost:8080/turma", {
-        method: "POST",
+    fetch('http://localhost:8080/turma', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(turma)
+        body: JSON.stringify(turmaData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Erro ao cadastrar turma");
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        alert("Turma cadastrada com sucesso!");
-        window.location.href = "/html/principal.html";
+        if (data && data.id) {
+            // Sucesso no cadastro da turma
+            alert('Turma cadastrada com sucesso!');
+            window.location.href = '/html/principal.html'; // Redirecionar para a página principal
+        } else {
+            // Se o retorno não tiver o id da turma, algo deu errado
+            alert('Erro ao cadastrar turma!');
+        }
     })
     .catch(error => {
-        alert("Erro: " + error.message);
+        // Em caso de erro na comunicação com a API
+        console.error(error);
+        alert('Erro ao comunicar com o servidor!');
     });
 });
