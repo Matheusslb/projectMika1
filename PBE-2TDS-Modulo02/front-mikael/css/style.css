@@ -33,3 +33,19 @@ body {
     border-radius: 20px;
     height: 25px;
 }
+
+#numAtv {
+    border: none;
+    box-shadow: 10px 5px 10px rgb(177, 246, 255);
+    width: 90%;
+    border-radius: 20px;
+    height: 25px;
+}
+
+#descAtv {
+    border: none;
+    box-shadow: 10px 5px 10px rgb(177, 246, 255);
+    width: 90%;
+    border-radius: 20px;
+    height: 25px;
+}

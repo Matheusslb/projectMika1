@@ -12,7 +12,7 @@
 <body>
     <section class="displayHome">
         <div class="gridDisplay">
-            <h1>Olá, professor Cleiton!</h1>
+            <h1 id="nomeProfessor">Olá, Professor!</h1>
             <a href="../login.html"><input id="logOut" type="button" value="sair"></a>
         </div>
         <a href="cadastro_turma.html"><input id="buttonClass" type="button" value="Cadastrar Turma"></a>
@@ -22,19 +22,20 @@
                 <th>Nome da Turma</th>
                 <th></th>
             </tr>
-            <tr>
-                <td>001</td>
-                <td>Turma A</td>
-                <td><input class="delete" type="button" value="Excluir"> <a href="atividades.html"><input class="view" type="button" value="Vizualizar"></a></td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>Turma B</td>
-                <td><input class="delete" type="button" value="Excluir"> <a href="atividades.html"><input class="view" type="button" value="Vizualizar"></a></td>
-            </tr>
+            
         </table>
     </section>
 
     <script src="../js/turma.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nome = localStorage.getItem('professorNome');
+            if (nome) {
+                document.getElementById('nomeProfessor').textContent = `Olá, Professor ${nome}!`;
+            }
+        });
+    </script>
+    
 </body>
 </html>

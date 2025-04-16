@@ -10,7 +10,7 @@
 <body>
     <section class="displayHome">
         <div class="gridDisplay">
-            <h1>Professor CLeiton</h1>
+            <h1 id="nomeProfessor">Olá, Professor!</h1>
             <a href="../login.html"><input id="logOut" type="button" value="sair"></a>
         </div>
         <a href="cadastro_atividade.html"><input id="buttonClass" type="button" value="Cadastrar Atividade"></a>
@@ -20,17 +20,18 @@
                 <th>Descrição</th>
                 <th></th>
             </tr>
-            <tr>
-                <td>001</td>
-                <td>Banco de Dados</td>
-                <td><input class="delete" type="button" value="Excluir"> <a href="principal.html"><input class="view" type="button" value="Vizualizar"></a></td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>Front-End</td>
-                <td><input class="delete" type="button" value="Excluir"> <a href="principal.html"><input class="view" type="button" value="Vizualizar"></a></td>
-            </tr>
         </table>
     </section>
+
+    <script src="../js/atividade.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nome = localStorage.getItem('professorNome');
+            if (nome) {
+                document.getElementById('nomeProfessor').textContent = `Olá, Professor ${nome}!`;
+            }
+        });
+    </script>
 </body>
 </html>
