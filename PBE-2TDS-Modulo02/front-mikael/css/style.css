@@ -11,3 +11,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+#senhaLogin {
+    border: none;
+    box-shadow: 10px 5px 10px rgb(177, 246, 255);
+    width: 90%;
+    border-radius: 20px;
+    height: 25px;
+}
+#nomeTurma {
+    border: none;
+    box-shadow: 10px 5px 10px rgb(177, 246, 255);
+    width: 90%;
+    border-radius: 20px;
+    height: 25px;
+}
+
+#numTurma {
+    border: none;
+    box-shadow: 10px 5px 10px rgb(177, 246, 255);
+    width: 90%;
+    border-radius: 20px;
+    height: 25px;
+}
